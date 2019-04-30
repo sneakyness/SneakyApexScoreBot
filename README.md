@@ -9,8 +9,7 @@ I was inspired to make this for two reasons, the first being that this consumes 
 - The 3rd is showing you the raw bounding boxes of areas Tesseract thinks is text, demonstrating the necessity to spoonfeed it smaller images
 
 ### I don't have time for this, show me a picture
-Computer, show me tane
-
+![](https://github.com/sneakyness/SneakyApexScoreBot/blob/master/examplescreen.png)
 
 ## What Am I Going To Do With This?
 - Probably make it work better
