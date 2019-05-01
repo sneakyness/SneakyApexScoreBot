@@ -1,5 +1,12 @@
 $(document).ready(function() {
   var smallImg = document.getElementById("smallImage");
+  var smallResults;
+  Tesseract.recognize(smallImg)
+    .then(function(result) {
+      smallResults = result;
+      $("#smallResult").append(smallResults.text);
+    });
+
   var bigImg = document.getElementById("bigImage");
   var image_overlay = document.getElementById('image-overlay');
   image_overlay.width = bigImg.naturalWidth;
@@ -11,15 +18,36 @@ $(document).ready(function() {
   icCanvas.height = 337;
   var icCctx = icCanvas.getContext('2d');
 
-  var smallResults;
   var bigResults;
 
-  Tesseract.recognize(smallImg)
-    .then(function(result) {
-      smallResults = result;
-      $("#smallResult").append(smallResults.text);
-    });
+  // magic numbers
+var resultHeaderRect = new SneakyRect(580, 50, 763, 51);
+var squadPlacementRect = new SneakyRect(602, 122, 196, 41);
+var squadKillsRect = new SneakyRect(1122, 122, 184, 41);
 
+var namesRect = new SneakyRect(214, 173, 1090, 37);
+var name1Rect = new SneakyRect(214, 173, 264, 37);
+var name1RectDst = new SneakyRect(0, 0, 264, 37);
+var name2Rect = new SneakyRect(438, 173, 264, 37);
+var name3Rect = new SneakyRect(826, 173, 264, 37);
+
+var stats1KillsRect = new SneakyRect(136, 650, 77, 44);
+var stats1DamageRect = new SneakyRect(136, 796, 136, 44);
+var stats1SurvivedRect = new SneakyRect(136, 796, 50, 44);
+var stats1ReviveRect = new SneakyRect(136, 869, 50, 44);
+var stats1RespawnRect = new SneakyRect(136, 942, 50, 44);
+
+var stats2KillsRect = new SneakyRect(760, 650, 77, 44);
+var stats2DamageRect = new SneakyRect(760, 796, 136, 44);
+var stats2SurvivedRect = new SneakyRect(760, 796, 50, 44);
+var stats2ReviveRect = new SneakyRect(760, 869, 50, 44);
+var stats2RespawnRect = new SneakyRect(760, 942, 50, 44);
+
+var stats3KillsRect = new SneakyRect(1386, 650, 77, 44);
+var stats3DamageRect = new SneakyRect(1386, 796, 136, 44);
+var stats3SurvivedRect = new SneakyRect(1386, 796, 50, 44);
+var stats3ReviveRect = new SneakyRect(1386, 869, 50, 44);
+var stats3RespawnRect = new SneakyRect(1386, 942, 50, 44);
   //header
   // icCctx.drawImage(bigImg, 580, 50, 763, 51, 0, 0, 763, 51)
 
@@ -32,8 +60,14 @@ $(document).ready(function() {
   // var placement = icCctx.getImageData(0, 51, 196, 41)
   // var squadKills = icCctx.getImageData(196, 51, 184, 41)
 
+// I'd like to put this somewhere else but javascript is so fuckin gross lmao 
+CanvasRenderingContext2D.prototype.snkDrawImage = function (sourceImage, sourceRect, destinationRect) {
+    this.drawImage(sourceImage, sourceRect.x, sourceRect.y, sourceRect.width, sourceRect.height, destinationRect.x, destinationRect.y, destinationRect.width, destinationRect.height)
+}
+
   // names
-  icCctx.drawImage(bigImg, 214, 173, 264, 37, 0, 0, 264, 37);
+  icCctx.snkDrawImage(bigImg, name1Rect, name1RectDst);
+  // icCctx.drawImage(bigImg, 214, 173, 264, 37, 0, 0, 264, 37);
   icCctx.drawImage(bigImg, 826, 173, 264, 37, 264, 0, 264, 37);
   icCctx.putImageData(brightOnly(icCctx.getImageData(264, 0, 264, 37)), 264, 0);
   icCctx.drawImage(bigImg, 1438, 173, 264, 37, 264 * 2, 0, 264, 37);
