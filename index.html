@@ -79,22 +79,22 @@
     <script src="js/main.js"></script>
     <script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>
     <script type="text/javascript">
-    function SneakyPoint (x, y) {
-      this.x = x;
-      this.y = y;
-    }
+      function SneakyPoint(x, y) {
+        this.x = x;
+        this.y = y;
+      }
 
-    function SneakySize (w, h) {
-      this.w = w;
-      this.h = h;
-    }
+      function SneakySize(w, h) {
+        this.w = w;
+        this.h = h;
+      }
 
-    function SneakyRect (x, y, w, h) {
-      this.x = x;
-      this.y = y;
-      this.width = w;
-      this.height = h;
-    }
+      function SneakyRect(x, y, w, h) {
+        this.x = x;
+        this.y = y;
+        this.width = w;
+        this.height = h;
+      }
 
   function contrastImage(imgData, contrast){  //input range [-100..100]
     var d = imgData.data;
@@ -149,32 +149,32 @@
     $("#smallResult").append(smallResults.text);
   });
 
-    var resultHeaderRect = SneakyRect(580, 50, 763, 51);
-    var squadPlacementRect = SneakyRect(602, 122, 196, 41)
-    var squadKillsRect = SneakyRect(1122, 122, 184, 41)
+  var resultHeaderRect = new SneakyRect(580, 50, 763, 51);
+  var squadPlacementRect = new SneakyRect(602, 122, 196, 41);
+  var squadKillsRect = new SneakyRect(1122, 122, 184, 41);
 
-    var namesRect = SneakyRect(214, 173, 1090, 37)
-    var name1Rect = SneakyRect(214, 173, 264, 37)
-    var name2Rect = SneakyRect(438, 173, 264, 37)
-    var name3Rect = SneakyRect(826, 173, 264, 37)
+  var namesRect = new SneakyRect(214, 173, 1090, 37);
+  var name1Rect = new SneakyRect(214, 173, 264, 37);
+  var name2Rect = new SneakyRect(438, 173, 264, 37);
+  var name3Rect = new SneakyRect(826, 173, 264, 37);
 
-    var stats1KillsRect = SneakyRect(136, 650, 77, 44)
-    var stats1DamageRect = SneakyRect(136, 796, 136, 44)
-    var stats1SurvivedRect = SneakyRect(136, 796, 50, 44)
-    var stats1ReviveRect = SneakyRect(136, 869, 50, 44)
-    var stats1RespawnRect = SneakyRect(136, 942, 50, 44)
+  var stats1KillsRect = new SneakyRect(136, 650, 77, 44);
+  var stats1DamageRect = new SneakyRect(136, 796, 136, 44);
+  var stats1SurvivedRect = new SneakyRect(136, 796, 50, 44);
+  var stats1ReviveRect = new SneakyRect(136, 869, 50, 44);
+  var stats1RespawnRect = new SneakyRect(136, 942, 50, 44);
 
-    var stats2KillsRect = SneakyRect(760, 650, 77, 44)
-    var stats2DamageRect = SneakyRect(760, 796, 136, 44)
-    var stats2SurvivedRect = SneakyRect(760, 796, 50, 44)
-    var stats2ReviveRect = SneakyRect(760, 869, 50, 44)
-    var stats2RespawnRect = SneakyRect(760, 942, 50, 44)
+  var stats2KillsRect = new SneakyRect(760, 650, 77, 44);
+  var stats2DamageRect = new SneakyRect(760, 796, 136, 44);
+  var stats2SurvivedRect = new SneakyRect(760, 796, 50, 44);
+  var stats2ReviveRect = new SneakyRect(760, 869, 50, 44);
+  var stats2RespawnRect = new SneakyRect(760, 942, 50, 44);
 
-    var stats3KillsRect = SneakyRect(1386, 650, 77, 44)
-    var stats3DamageRect = SneakyRect(1386, 796, 136, 44)
-    var stats3SurvivedRect = SneakyRect(1386, 796, 50, 44)
-    var stats3ReviveRect = SneakyRect(1386, 869, 50, 44)
-    var stats3RespawnRect = SneakyRect(1386, 942, 50, 44)
+  var stats3KillsRect = new SneakyRect(1386, 650, 77, 44);
+  var stats3DamageRect = new SneakyRect(1386, 796, 136, 44);
+  var stats3SurvivedRect = new SneakyRect(1386, 796, 50, 44);
+  var stats3ReviveRect = new SneakyRect(1386, 869, 50, 44);
+  var stats3RespawnRect = new SneakyRect(1386, 942, 50, 44);
 
     //header
     // icCctx.drawImage(bigImg, 580, 50, 763, 51, 0, 0, 763, 51)
