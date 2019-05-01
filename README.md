@@ -15,7 +15,7 @@ Even if it's never 100% Accurate, it is capable of providing "confidence scores"
 - The 3rd is showing you the raw bounding boxes of areas Tesseract thinks is text, demonstrating the necessity to spoonfeed it smaller images
 
 ### I don't have time for this, show me a picture
-![](https://github.com/sneakyness/SneakyApexScoreBot/blob/master/examplescreen.png)
+![](https://github.com/sneakyness/SneakyApexScoreBot/blob/master/img/examplescreen.png)
 
 ## What Am I Going To Do With This?
 - Probably make it work better
