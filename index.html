@@ -21,11 +21,8 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security. Honestly if you're reading this, and you haven't installed brave yet, you should probably go do that. Instead of relying on an extension to keep you safe and ad free, it preprocesses that shit out before it even reaches the DOM renderer, and it's so, so fast. Fast like Mozilla Firefox used to be back when that was brand new, if you're old enough to remember that.</p>
   <![endif]-->
   
-  <p>Wait a second or two, you should eventually see the text of the first image printed below the image itself. This is using Tesseract Optical Character Recognition to extract text from images</p>
-  <p>The second section is copying pre defined areas out of the full size stat summary screenshot (at end of page), and running OCR on each chunk to fill a table with data. Notice it makes quite a few mistakes. This can be improved by converting the image to greyscale, boosting the contrast, and superscaling the image.</p>
-  <p>All the way down at the bottom is the source image. After a long enough wait, you will see a series of blue bounding boxes drawn around the things it thinks are text, with the yellow lines denoting the baseline. It generates a decent amount of garbage, but manages to get a few things right.</p>
-  <p>What am I going to do with this? Probably make it work better, then automatically generate bounding boxes for the information I want so that it is resolution independent. From there, it could be used in conjunction with a discord bot, or combined with a script that detects and captures stat screens from videos to generate stat tallies for an entire stream. It could also be used to keep track of all the people you've played with, and later modified to keep an eye on the kill feed, so you know how often you are encountering the same players, and potentially alert you if someone with >x amount of twitch viewers is in the match.</p>
-  <img id="smallImage" src="test2.png">
+  <p>Need to rewrite this</p>
+  <img id="smallImage" src="img/test2.png">
   <div id="smallResult"></div>
   <hr>
   <canvas id="imageChunks"></canvas>
@@ -72,7 +69,7 @@
     <hr>
     <div style="position: relative;">
       <canvas id='image-overlay' style="position: absolute; z-index: 2"></canvas>
-      <img id="bigImage" src="test3.jpg" style="z-index: 1">
+      <img id="bigImage" src="img/test3.jpg" style="z-index: 1">
       <div id="bigResult"></div>
     </div>
     <script src="js/vendor/modernizr-3.7.1.min.js"></script>
