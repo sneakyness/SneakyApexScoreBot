@@ -1,7 +1,13 @@
 # SneakyApexScoreBot
-Example of using [Tesseract OCR](https://github.com/naptha/tesseract.js#tesseractjs), aka Optical Character Recognition, which compiled to JS via [emscripten](https://github.com/kripken/emscripten), to read data from screenshots of Apex Legends score summary screens.  
+Example of using [Tesseract OCR](https://github.com/naptha/tesseract.js#tesseractjs), aka Optical Character Recognition, which is compiled to JS via [emscripten](https://github.com/kripken/emscripten), to read data from screenshots of Apex Legends score summary screens.  
   
-I was inspired to make this for two reasons, the first being that this consumes a significant amount of time and manpower during tournament events, and the second being that these people often count the results incorrectly. 
+I was inspired to make this for a few reasons: 
+ 1) This consumes a significant amount of time & manpower during events, and waiting for people to count sucks both as a participant and a viewer on TTV
+ 2) These people often count the results incorrectly
+ 3) Unfortuately children have been doctoring or submitting old screen shots to lie & win what they don't deserve
+ 4) Once it can scan VODs, it will allow for participants of any apex tournament to independently account for everyone's results, to make sure the play is damn good on both sides. 
+
+Even if it's never 100% Accurate, it is capable of providing "confidence scores", so that anything it is unsure of can be presented as a batch for humans to review and fix. 
 
 ## It contains 3 examples
 - The 1st is a small initial test, in which I clipped the header/value of one field out of the image and applied Tesseract to it
@@ -9,8 +15,7 @@ I was inspired to make this for two reasons, the first being that this consumes 
 - The 3rd is showing you the raw bounding boxes of areas Tesseract thinks is text, demonstrating the necessity to spoonfeed it smaller images
 
 ### I don't have time for this, show me a picture
-Computer, show me tane
-
+![](https://github.com/sneakyness/SneakyApexScoreBot/blob/master/examplescreen.png)
 
 ## What Am I Going To Do With This?
 - Probably make it work better
