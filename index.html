@@ -3,24 +3,20 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>SneakyApexScoreBot 0.0.1</title>
+  <title>SneakyApexScoreBot 0.0.2</title>
   <meta name="description" content="SneakyApexScoreBot is a javascript bot that uses Tesseract Optical Character Recognition to extract statistics from Apex Legends Stats Summary Screenshots">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <link rel="manifest" href="site.webmanifest">
   <link rel="apple-touch-icon" href="icon.png">
-
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/main.css">
-
   <meta name="theme-color" content="#fafafa">
 </head>
 
 <body>
-    <!--[if IE]>
+  <!--[if IE]>
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security. Honestly if you're reading this, and you haven't installed brave yet, you should probably go do that. Instead of relying on an extension to keep you safe and ad free, it preprocesses that shit out before it even reaches the DOM renderer, and it's so, so fast. Fast like Mozilla Firefox used to be back when that was brand new, if you're old enough to remember that.</p>
   <![endif]-->
-  
   <p>Need to rewrite this</p>
   <img id="smallImage" src="img/test2.png">
   <div id="smallResult"></div>
@@ -63,278 +59,23 @@
           <td id="respawn1"></td>
           <td id="respawn2"></td>
           <td id="respawn3"></td>
-        </tr>
-      </table>
-    </div>
-    <hr>
-    <div style="position: relative;">
-      <canvas id='image-overlay' style="position: absolute; z-index: 2"></canvas>
-      <img id="bigImage" src="img/test3.jpg" style="z-index: 1">
-      <div id="bigResult"></div>
-    </div>
-    <script src="js/vendor/modernizr-3.7.1.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
-    <script src="js/plugins.js"></script>
-    <script src="js/main.js"></script>
-    <script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>
-    <script type="text/javascript">
-      function SneakyPoint(x, y) {
-        this.x = x;
-        this.y = y;
-      }
-
-      function SneakySize(w, h) {
-        this.w = w;
-        this.h = h;
-      }
-
-      function SneakyRect(x, y, w, h) {
-        this.x = x;
-        this.y = y;
-        this.width = w;
-        this.height = h;
-      }
-
-  function contrastImage(imgData, contrast){  //input range [-100..100]
-    var d = imgData.data;
-    contrast = (contrast/100) + 1;  //convert to decimal & shift range: [0..2]
-    var intercept = 128 * (1 - contrast);
-    for(var i=0;i<d.length;i+=4){
-      d[i] = d[i]*contrast + intercept;
-      d[i+1] = d[i+1]*contrast + intercept;
-      d[i+2] = d[i+2]*contrast + intercept;
-    }
-    return imgData;
-  }
-
-  function truncateColor(value) {
-    if (value < 220) {
-      value = 0;
-    } else if (value > 255) {
-      value = 255;
-    }
-
-    return value;
-  }
-
-  function brightOnly(imgData){
-    var d = imgData.data;
-    for(var i=0;i<d.length;i+=4){
-      d[i] = truncateColor(d[i]);
-      d[i+1] = truncateColor(d[i+1]);
-      d[i+2] = truncateColor(d[i+2]);
-    }
-    return imgData;
-  }
-
-  var smallImg = document.getElementById("smallImage");
-  var bigImg = document.getElementById("bigImage");
-  var image_overlay = document.getElementById('image-overlay');
-  image_overlay.width = bigImg.naturalWidth;
-  image_overlay.height = bigImg.naturalHeight;
-  var ioctx = image_overlay.getContext('2d');
-
-  var icCanvas = document.getElementById('imageChunks');
-  icCanvas.width = 1026;
-  icCanvas.height = 337;
-  var icCctx = icCanvas.getContext('2d');
-
-  var smallResults;
-  var bigResults;
-
-  Tesseract.recognize(smallImg)
-  .then(function(result){
-    smallResults = result;
-    $("#smallResult").append(smallResults.text);
-  });
-
-  var resultHeaderRect = new SneakyRect(580, 50, 763, 51);
-  var squadPlacementRect = new SneakyRect(602, 122, 196, 41);
-  var squadKillsRect = new SneakyRect(1122, 122, 184, 41);
-
-  var namesRect = new SneakyRect(214, 173, 1090, 37);
-  var name1Rect = new SneakyRect(214, 173, 264, 37);
-  var name2Rect = new SneakyRect(438, 173, 264, 37);
-  var name3Rect = new SneakyRect(826, 173, 264, 37);
-
-  var stats1KillsRect = new SneakyRect(136, 650, 77, 44);
-  var stats1DamageRect = new SneakyRect(136, 796, 136, 44);
-  var stats1SurvivedRect = new SneakyRect(136, 796, 50, 44);
-  var stats1ReviveRect = new SneakyRect(136, 869, 50, 44);
-  var stats1RespawnRect = new SneakyRect(136, 942, 50, 44);
-
-  var stats2KillsRect = new SneakyRect(760, 650, 77, 44);
-  var stats2DamageRect = new SneakyRect(760, 796, 136, 44);
-  var stats2SurvivedRect = new SneakyRect(760, 796, 50, 44);
-  var stats2ReviveRect = new SneakyRect(760, 869, 50, 44);
-  var stats2RespawnRect = new SneakyRect(760, 942, 50, 44);
-
-  var stats3KillsRect = new SneakyRect(1386, 650, 77, 44);
-  var stats3DamageRect = new SneakyRect(1386, 796, 136, 44);
-  var stats3SurvivedRect = new SneakyRect(1386, 796, 50, 44);
-  var stats3ReviveRect = new SneakyRect(1386, 869, 50, 44);
-  var stats3RespawnRect = new SneakyRect(1386, 942, 50, 44);
-
-    //header
-    // icCctx.drawImage(bigImg, 580, 50, 763, 51, 0, 0, 763, 51)
-
-    // placement and squad kills
-    // icCctx.drawImage(bigImg, 602, 122, 196, 41, 0, 51, 196, 41)
-    // icCctx.drawImage(bigImg, 1122, 122, 184, 41, 196, 51, 184, 41)
-
-    // var header = icCctx.getImageData(0, 0, 763, 51)
-
-    // var placement = icCctx.getImageData(0, 51, 196, 41)
-    // var squadKills = icCctx.getImageData(196, 51, 184, 41)
-
-    // names
-    icCctx.drawImage(bigImg, 214, 173, 264, 37, 0, 0, 264, 37);
-    icCctx.drawImage(bigImg, 826, 173, 264, 37, 264, 0, 264, 37);
-    icCctx.putImageData(brightOnly(icCctx.getImageData(264, 0, 264, 37)), 264, 0);
-    icCctx.drawImage(bigImg, 1438, 173, 264, 37, 264*2, 0, 264, 37);
-    icCctx.putImageData(brightOnly(icCctx.getImageData(264*2, 0, 264, 37)), 264*2, 0);
-
-
-    // stats 1
-    var stats1x = 136
-    var statsh = 44
-    icCctx.drawImage(bigImg, 136, 650, 77, 44, 0, 37, 77, 44);
-    icCctx.drawImage(bigImg, 136, 723, 100, 44, 0, 37+44, 100, 44);
-    icCctx.drawImage(bigImg, 136, 796, 136, 44, 0, 37+44*2, 136, 44);
-    icCctx.drawImage(bigImg, 136, 869, 50, 44, 0, 37+44*3, 50, 44);
-    icCctx.putImageData(brightOnly(icCctx.getImageData(0, 37+44*3, 50, 44)), 0, 37+44*3);
-    icCctx.drawImage(bigImg, 136, 942, 50, 44, 0, 37+44*4, 50, 44);
-    icCctx.putImageData(brightOnly(icCctx.getImageData(0, 37+44*4, 50, 44)), 0, 37+44*4);
-    var stats1name = icCctx.getImageData(0, 0, 264, 37);
-    var stats1Kills = icCctx.getImageData(0, 37, 77, 44);
-    var stats1Damage = icCctx.getImageData(0, 37+44, 100, 44);
-    var stats1Survived = icCctx.getImageData(0, 37+44*2, 136, 44);
-    var stats1Revive = icCctx.getImageData(0, 37+44*3, 50, 44);
-    var stats1Respawn = icCctx.getImageData(0, 37+44*4, 50, 44);
-    Tesseract.recognize(stats1name)
-    .then(function(result){
-      $("#name1").append(result.text);
-    });
-    Tesseract.recognize(stats1Kills)
-    .then(function(result){
-      $("#kills1").append(result.text);
-    });
-    Tesseract.recognize(stats1Damage)
-    .then(function(result){
-      $("#damage1").append(result.text);
-    });
-    Tesseract.recognize(stats1Survived)
-    .then(function(result){
-      $("#survived1").append(result.text);
-    });
-    Tesseract.recognize(stats1Revive)
-    .then(function(result){
-      $("#revives1").append(result.text);
-    });
-    Tesseract.recognize(stats1Respawn)
-    .then(function(result){
-      $("#respawn1").append(result.text);
-    });
-
-    // // stats 2
-    stats2x = 760
-    icCctx.drawImage(bigImg, stats2x, 650, 77, 44, 264, 37, 77, 44);
-    icCctx.putImageData(brightOnly(icCctx.getImageData(264, 37, 77, 44)), 264, 37);
-    icCctx.drawImage(bigImg, stats2x, 723, 100, 44, 264, 37+44, 100, 44);
-    icCctx.drawImage(bigImg, stats2x, 796, 136, 44, 264, 37+44*2, 136*2, 44*2);
-    icCctx.putImageData(brightOnly(icCctx.getImageData(264, 37+44*2, 136*2, 44*2)), 264, 37+44*2);
-    // icCctx.drawImage(bigImg, stats2x, 869, 136, 44, 264, 37+44*3, 136, 44);
-    // icCctx.drawImage(bigImg, stats2x, 942, 136, 44, 264, 37+44*4, 136, 44);
-    // icCctx.putImageData(brightOnly(icCctx.getImageData(264, 37+44*4, 136, 44)), 264, 37+44*4);
-    var stats2name = icCctx.getImageData(264, 0, 264, 37);
-    var stats2Kills = icCctx.getImageData(264, 37, 77, 44);
-    var stats2Damage = icCctx.getImageData(264, 37+44, 100, 44);
-    var stats2Survived = icCctx.getImageData(264, 37+44*2, 136*2, 44*2);
-    var stats2Revive = icCctx.getImageData(264, 37+44*3, 136, 44);
-    var stats2Respawn = icCctx.getImageData(264, 37+44*4, 136, 44);
-    Tesseract.recognize(stats2name)
-    .then(function(result){
-      $("#name2").append(result.text);
-    });
-    Tesseract.recognize(stats2Kills)
-    .then(function(result){
-      $("#kills2").append(result.text);
-    });
-    Tesseract.recognize(stats2Damage)
-    .then(function(result){
-      $("#damage2").append(result.text);
-    });
-    Tesseract.recognize(stats2Survived)
-    .then(function(result){
-      $("#survived2").append(result.text);
-    });
-    Tesseract.recognize(stats2Revive)
-    .then(function(result){
-      $("#revives2").append(result.text);
-    });
-    Tesseract.recognize(stats2Respawn)
-    .then(function(result){
-      $("#respawn2").append(result.text);
-    });
-
-    // // stats 3
-    stats3x = 1386
-    icCctx.drawImage(bigImg, stats3x, 650, 77, 44, 264*2, 37, 77, 44);
-    icCctx.drawImage(bigImg, stats3x, 723, 100, 44, 264*2, 37+44, 100, 44);
-    icCctx.drawImage(bigImg, stats3x, 796, 136, 44, 264*2, 37+44*2, 136, 44);
-    icCctx.drawImage(bigImg, stats3x, 869, 136, 44, 264*2, 37+44*3, 136, 44);
-    icCctx.drawImage(bigImg, stats3x, 942, 136, 44, 264*2, 37+44*4, 136*2, 44*2);
-    var stats3name = icCctx.getImageData(264*2, 0, 264, 37);
-    var stats3Kills = icCctx.getImageData(264*2, 37, 77, 44);
-    var stats3Damage = icCctx.getImageData(264*2, 37+44, 100, 44);
-    var stats3Survived = icCctx.getImageData(264*2, 37+44*2, 136, 44);
-    var stats3Revive = icCctx.getImageData(264*2, 37+44*3, 136, 44);
-    var stats3Respawn = icCctx.getImageData(264*2, 37+44*4, 136*2, 44*2);
-    Tesseract.recognize(stats3name)
-    .then(function(result){
-      $("#name3").append(result.text);
-    });
-    Tesseract.recognize(stats3Kills)
-    .then(function(result){
-      $("#kills3").append(result.text);
-    });
-    Tesseract.recognize(stats3Damage)
-    .then(function(result){
-      $("#damage3").append(result.text);
-    });
-    Tesseract.recognize(stats3Survived)
-    .then(function(result){
-      $("#survived3").append(result.text);
-    });
-    Tesseract.recognize(stats3Revive)
-    .then(function(result){
-      $("#revives3").append(result.text);
-    });
-    Tesseract.recognize(stats3Respawn)
-    .then(function(result){
-      $("#respawn3").append(result.text);
-    });
-
-    Tesseract.recognize(bigImg)
-    .then(function(result){
-      bigResults = result;
-      $("#bigResult").append(bigResults.text);
-      bigResults.words.forEach(function(w){
-        var b = w.bbox;
-
-        ioctx.strokeWidth = 3
-        ioctx.strokeStyle = 'blue'
-        ioctx.strokeRect(b.x0, b.y0, b.x1-b.x0, b.y1-b.y0)
-        ioctx.beginPath()
-        ioctx.moveTo(w.baseline.x0, w.baseline.y0)
-        ioctx.lineTo(w.baseline.x1, w.baseline.y1)
-        ioctx.strokeWidth = 5
-        ioctx.strokeStyle = 'yellow'
-        ioctx.stroke()
-      });
-    });
+      </tr>
+    </table>
+  </div>
+  <hr>
+  <div style="position: relative;">
+    <canvas id='image-overlay' style="position: absolute; z-index: 2"></canvas>
+    <img id="bigImage" src="img/test3.jpg" style="z-index: 1">
+    <div id="bigResult"></div>
+  </div>
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script>
+    window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')
   </script>
-  
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script src='https://cdn.jsdelivr.net/gh/naptha/tesseract.js@v1.0.14/dist/tesseract.min.js'></script>
 </body>
+
 </html>
