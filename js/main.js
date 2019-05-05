@@ -21,6 +21,10 @@ $(document).ready(function() {
   var bigResults;
 
   // magic numbers
+var name1Origin = new SneakyPoint(214, 173)
+var name2Origin = new SneakyPoint(876, 173)
+var name3Origin = new SneakyPoint(1438, 173)
+
 var resultHeaderRect = new SneakyRect(580, 50, 763, 51);
 var squadPlacementRect = new SneakyRect(602, 122, 196, 41);
 var squadKillsRect = new SneakyRect(1122, 122, 184, 41);
@@ -28,11 +32,11 @@ var squadKillsRect = new SneakyRect(1122, 122, 184, 41);
 var allNamesRect = new SneakyRect(214, 173, 1090, 37);
 
 var nameSize = new SneakySize(264, 37)
-var name1Rect = new SneakyRect(214, 173, nameSize.w, nameSize.h);
+var name1Rect = new SneakyRect(name1Origin.x, name1Origin.y, nameSize.w, nameSize.h);
 var name1RectDst = new SneakyRect(0, 0, nameSize.w, nameSize.h);
-var name2Rect = new SneakyRect(438, 173, nameSize.w, nameSize.h);
+var name2Rect = new SneakyRect(name2Origin.x, name2Origin.y, nameSize.w, nameSize.h);
 var name2RectDst = new SneakyRect(nameSize.w, 0, nameSize.w, nameSize.h);
-var name3Rect = new SneakyRect(826, 173, nameSize.w, nameSize.h);
+var name3Rect = new SneakyRect(name3Origin.x, name3Origin.y, nameSize.w, nameSize.h);
 var name3RectDst = new SneakyRect(nameSize.w*2, 0, nameSize.w, nameSize.h);
 
 var stats1KillsRect = new SneakyRect(136, 650, 77, 44);
