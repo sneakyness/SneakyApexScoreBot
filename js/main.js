@@ -52,25 +52,25 @@ var reviveY = 869;
 var respawnY = 942;
 
 var stats1x = 136
-var killsOrigin1 = SneakyPoint(stats1x, killsY);
-var damageOrigin1 = SneakyPoint(stats1x, damageY);
-var survivedOrigin1 = SneakyPoint(stats1x, survivedY);
-var reviveOrigin1 = SneakyPoint(stats1x, reviveY);
-var respawnOrigin1 = SneakyPoint(stats1x, respawnY);
+var killsOrigin1 = new SneakyPoint(stats1x, killsY);
+var damageOrigin1 = new SneakyPoint(stats1x, damageY);
+var survivedOrigin1 = new SneakyPoint(stats1x, survivedY);
+var reviveOrigin1 = new SneakyPoint(stats1x, reviveY);
+var respawnOrigin1 = new SneakyPoint(stats1x, respawnY);
 
 var stats2x = 760
-var killsOrigin2 = SneakyPoint(stats2x, killsY);
-var damageOrigin2 = SneakyPoint(stats2x, damageY);
-var survivedOrigin2 = SneakyPoint(stats2x, survivedY);
-var reviveOrigin2 = SneakyPoint(stats2x, reviveY);
-var respawnOrigin2 = SneakyPoint(stats2x, respawnY);
+var killsOrigin2 = new SneakyPoint(stats2x, killsY);
+var damageOrigin2 = new SneakyPoint(stats2x, damageY);
+var survivedOrigin2 = new SneakyPoint(stats2x, survivedY);
+var reviveOrigin2 = new SneakyPoint(stats2x, reviveY);
+var respawnOrigin2 = new SneakyPoint(stats2x, respawnY);
 
 var stats3x = 1386
-var killsOrigin3 = SneakyPoint(stats3x, killsY);
-var damageOrigin3 = SneakyPoint(stats3x, damageY);
-var survivedOrigin3 = SneakyPoint(stats3x, survivedY);
-var reviveOrigin3 = SneakyPoint(stats3x, reviveY);
-var respawnOrigin3 = SneakyPoint(stats3x, respawnY);
+var killsOrigin3 = new SneakyPoint(stats3x, killsY);
+var damageOrigin3 = new SneakyPoint(stats3x, damageY);
+var survivedOrigin3 = new SneakyPoint(stats3x, survivedY);
+var reviveOrigin3 = new SneakyPoint(stats3x, reviveY);
+var respawnOrigin3 = new SneakyPoint(stats3x, respawnY);
 
 var killsRect1 = new SneakyRect(killsOrigin1.x, killsOrigin1.y, killsSize.w, killsSize.h);
 var damageRect1 = new SneakyRect(damageOrigin1.x, damageOrigin1.y, damageSize.w, damageSize.h);
