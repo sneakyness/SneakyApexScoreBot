@@ -73,10 +73,19 @@ CanvasRenderingContext2D.prototype.snkDrawImage = function (srcImg, srcRect, dst
     this.drawImage(srcImg, srcRect.x, srcRect.y, srcRect.w, srcRect.h, dstRect.x, dstRect.y, dstRect.w, dstRect.h)
 }
 
+CanvasRenderingContext2D.prototype.snkGetImageData = function (srcRect) {
+	return this.getImageData(srcRect.x, srcRect.y, srcRect.w, srcRect.h)
+}
+
+CanvasRenderingContext2D.prototype.snkPutImageData = function (imgData, dstPoint) {
+	this.putImageData(imgData, dstPoint.x, dstPoint.y)
+}
+
   // names
   icCctx.snkDrawImage(bigImg, name1Rect, name1RectDst);
   icCctx.snkDrawImage(bigImg, name2Rect, name2RectDst);
-  // icCctx.putImageData(brightOnly(icCctx.getImageData(264, 0, 264, 37)), 264, 0);
+  // icCctx.putImageData(brightOnly(icCctx.snkGetImageData(name2Rect)), 264, 0);
+  icCctx.snkPutImageData(brightOnly(icCctx.snkGetImageData(name2Rect)), name2RectDst);
   icCctx.snkDrawImage(bigImg, name3Rect, name3RectDst);
   // icCctx.putImageData(brightOnly(icCctx.getImageData(264 * 2, 0, 264, 37)), 264 * 2, 0);
 
