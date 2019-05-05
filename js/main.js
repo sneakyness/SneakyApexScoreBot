@@ -85,7 +85,8 @@ CanvasRenderingContext2D.prototype.snkPutImageData = function (imgData, dstPoint
   icCctx.snkDrawImage(bigImg, name1Rect, name1RectDst);
   icCctx.snkDrawImage(bigImg, name2Rect, name2RectDst);
   // icCctx.putImageData(brightOnly(icCctx.snkGetImageData(name2Rect)), 264, 0);
-  icCctx.snkPutImageData(brightOnly(icCctx.snkGetImageData(name2Rect)), name2RectDst.point);
+  var brighten = brightOnly(icCctx.snkGetImageData(name2Rect))
+  icCctx.snkPutImageData(brighten, name2RectDst.point);
   icCctx.snkDrawImage(bigImg, name3Rect, name3RectDst);
   // icCctx.putImageData(brightOnly(icCctx.getImageData(264 * 2, 0, 264, 37)), 264 * 2, 0);
 
