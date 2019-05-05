@@ -37,6 +37,8 @@ function SneakyRect(x, y, w, h) {
   this.y = y;
   this.w = w;
   this.h = h;
+  this.point = new SneakyPoint(x, y)
+  this.size = new SneakySize(w, h)
 }
 
 // image manipulation
