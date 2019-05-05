@@ -15,7 +15,7 @@ $(document).ready(function() {
 
   var icCanvas = document.getElementById('imageChunks');
   icCanvas.width = 1026;
-  icCanvas.height = 337;
+  icCanvas.height = 400;
   var icCctx = icCanvas.getContext('2d');
 
   var bigResults;
@@ -69,17 +69,14 @@ var stats3RespawnRect = new SneakyRect(1386, 942, 50, 44);
   // var squadKills = icCctx.getImageData(196, 51, 184, 41)
 
 // I'd like to put this somewhere else but javascript is so fuckin gross lmao 
-CanvasRenderingContext2D.prototype.snkDrawImage = function (sourceImage, sourceRect, destinationRect) {
-    this.drawImage(sourceImage, sourceRect.x, sourceRect.y, sourceRect.w, sourceRect.h, destinationRect.x, destinationRect.y, destinationRect.w, destinationRect.h)
+CanvasRenderingContext2D.prototype.snkDrawImage = function (srcImg, srcRect, dstRect) {
+    this.drawImage(srcImg, srcRect.x, srcRect.y, srcRect.w, srcRect.h, dstRect.x, dstRect.y, dstRect.w, dstRect.h)
 }
 
   // names
   icCctx.snkDrawImage(bigImg, name1Rect, name1RectDst);
-  // icCctx.drawImage(bigImg, 214, 173, 264, 37, 0, 0, 264, 37);
-  // icCctx.drawImage(bigImg, 826, 173, 264, 37, 264, 0, 264, 37);
   icCctx.snkDrawImage(bigImg, name2Rect, name2RectDst);
   // icCctx.putImageData(brightOnly(icCctx.getImageData(264, 0, 264, 37)), 264, 0);
-  // icCctx.drawImage(bigImg, 1438, 173, 264, 37, 264 * 2, 0, 264, 37);
   icCctx.snkDrawImage(bigImg, name3Rect, name3RectDst);
   // icCctx.putImageData(brightOnly(icCctx.getImageData(264 * 2, 0, 264, 37)), 264 * 2, 0);
 
