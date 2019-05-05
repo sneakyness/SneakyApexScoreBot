@@ -39,23 +39,56 @@ var name2RectDst = new SneakyRect(nameSize.w, 0, nameSize.w, nameSize.h);
 var name3Rect = new SneakyRect(name3Origin.x, name3Origin.y, nameSize.w, nameSize.h);
 var name3RectDst = new SneakyRect(nameSize.w*2, 0, nameSize.w, nameSize.h);
 
-var stats1KillsRect = new SneakyRect(136, 650, 77, 44);
-var stats1DamageRect = new SneakyRect(136, 796, 136, 44);
-var stats1SurvivedRect = new SneakyRect(136, 796, 50, 44);
-var stats1ReviveRect = new SneakyRect(136, 869, 50, 44);
-var stats1RespawnRect = new SneakyRect(136, 942, 50, 44);
+var killsSize = new SneakySize(77, 44);
+var damageSize = new SneakySize(136, 44);
+var survivedSize = new SneakySize(50, 44);
+var reviveSize = new SneakySize(50, 44);
+var respawnSize = new SneakySize(50, 44);
 
-var stats2KillsRect = new SneakyRect(760, 650, 77, 44);
-var stats2DamageRect = new SneakyRect(760, 796, 136, 44);
-var stats2SurvivedRect = new SneakyRect(760, 796, 50, 44);
-var stats2ReviveRect = new SneakyRect(760, 869, 50, 44);
-var stats2RespawnRect = new SneakyRect(760, 942, 50, 44);
+var killsY = 650;
+var damageY = 723;
+var survivedY = 796;
+var reviveY = 869;
+var respawnY = 942;
 
-var stats3KillsRect = new SneakyRect(1386, 650, 77, 44);
-var stats3DamageRect = new SneakyRect(1386, 796, 136, 44);
-var stats3SurvivedRect = new SneakyRect(1386, 796, 50, 44);
-var stats3ReviveRect = new SneakyRect(1386, 869, 50, 44);
-var stats3RespawnRect = new SneakyRect(1386, 942, 50, 44);
+var stats1x = 136
+var killsOrigin1 = SneakyPoint(stats1x, killsY);
+var damageOrigin1 = SneakyPoint(stats1x, damageY);
+var survivedOrigin1 = SneakyPoint(stats1x, survivedY);
+var reviveOrigin1 = SneakyPoint(stats1x, reviveY);
+var respawnOrigin1 = SneakyPoint(stats1x, respawnY);
+
+var stats2x = 760
+var killsOrigin2 = SneakyPoint(stats2x, killsY);
+var damageOrigin2 = SneakyPoint(stats2x, damageY);
+var survivedOrigin2 = SneakyPoint(stats2x, survivedY);
+var reviveOrigin2 = SneakyPoint(stats2x, reviveY);
+var respawnOrigin2 = SneakyPoint(stats2x, respawnY);
+
+var stats3x = 1386
+var killsOrigin3 = SneakyPoint(stats3x, killsY);
+var damageOrigin3 = SneakyPoint(stats3x, damageY);
+var survivedOrigin3 = SneakyPoint(stats3x, survivedY);
+var reviveOrigin3 = SneakyPoint(stats3x, reviveY);
+var respawnOrigin3 = SneakyPoint(stats3x, respawnY);
+
+var killsRect1 = new SneakyRect(killsOrigin1.x, killsOrigin1.y, killsSize.w, killsSize.h);
+var damageRect1 = new SneakyRect(damageOrigin1.x, damageOrigin1.y, damageSize.w, damageSize.h);
+var survivedRect1 = new SneakyRect(survivedOrigin1.x, survivedOrigin1.y, survivedSize.w, survivedSize.h);
+var reviveRect1 = new SneakyRect(reviveOrigin1.x, reviveOrigin1.y, reviveSize.w, reviveSize.h);
+var respawnRect1 = new SneakyRect(respawnOrigin1.x, respawnOrigin1.y, respawnSize.w, respawnSize.h);
+
+var killsRect2 = new SneakyRect(killsOrigin2.x, killsOrigin2.y, killsSize.w, killsSize.h);
+var damageRect2 = new SneakyRect(damageOrigin2.x, damageOrigin2.y, damageSize.w, damageSize.h);
+var survivedRect2 = new SneakyRect(survivedOrigin2.x, survivedOrigin2.y, survivedSize.w, survivedSize.h);
+var reviveRect2 = new SneakyRect(reviveOrigin2.x, reviveOrigin2.y, reviveSize.w, reviveSize.h);
+var respawnRect2 = new SneakyRect(respawnOrigin2.x, respawnOrigin2.y, respawnSize.w, respawnSize.h);
+
+var killsRect3 = new SneakyRect(killsOrigin3.x, killsOrigin3.y, killsSize.w, killsSize.h);
+var damageRect3 = new SneakyRect(damageOrigin3.x, damageOrigin3.y, damageSize.w, damageSize.h);
+var survivedRect3 = new SneakyRect(survivedOrigin3.x, survivedOrigin3.y, survivedSize.w, survivedSize.h);
+var reviveRect3 = new SneakyRect(reviveOrigin3.x, reviveOrigin3.y, reviveSize.w, reviveSize.h);
+var respawnRect3 = new SneakyRect(respawnOrigin3.x, respawnOrigin3.y, respawnSize.w, respawnSize.h);
   //header
   // icCctx.drawImage(bigImg, 580, 50, 763, 51, 0, 0, 763, 51)
 
@@ -89,8 +122,6 @@ CanvasRenderingContext2D.prototype.snkPutImageData = function (imgData, dstPoint
   icCctx.snkPutImageData(brightOnly(icCctx.snkGetImageData(name3RectDst)), name3RectDst.point);
 
   // stats 1
-  var stats1x = 136
-  var statsh = 44
   icCctx.drawImage(bigImg, 136, 650, 77, 44, 0, 37, 77, 44);
   icCctx.drawImage(bigImg, 136, 723, 100, 44, 0, 37 + 44, 100, 44);
   icCctx.drawImage(bigImg, 136, 796, 136, 44, 0, 37 + 44 * 2, 136, 44);
