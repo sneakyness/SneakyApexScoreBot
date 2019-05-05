@@ -35,8 +35,8 @@ function SneakySize(w, h) {
 function SneakyRect(x, y, w, h) {
   this.x = x;
   this.y = y;
-  this.width = w;
-  this.height = h;
+  this.w = w;
+  this.h = h;
 }
 
 // image manipulation
